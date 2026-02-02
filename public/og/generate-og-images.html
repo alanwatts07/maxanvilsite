@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Max Anvil OG Image Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      padding: 40px;
+    }
+    h1 { margin-bottom: 20px; color: #0ff; }
+    p { margin-bottom: 40px; color: #888; }
+
+    .og-container {
+      margin-bottom: 60px;
+    }
+    .mood-label {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #0ff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* OG Image: 1200x630 */
+    .og-image {
+      width: 1200px;
+      height: 630px;
+      display: flex;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+      border: 3px solid #333;
+      overflow: hidden;
+    }
+
+    .og-left {
+      width: 500px;
+      height: 630px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .og-left img {
+      width: 420px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 4px solid var(--mood-color);
+      box-shadow: 0 0 40px var(--mood-glow);
+    }
+
+    .og-right {
+      flex: 1;
+      padding: 60px 60px 60px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .og-title {
+      font-size: 72px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #fff, var(--mood-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .og-subtitle {
+      font-size: 36px;
+      color: var(--mood-color);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .og-description {
+      font-size: 24px;
+      line-height: 1.5;
+      color: #aaa;
+      margin-bottom: 40px;
+      max-width: 580px;
+    }
+
+    .og-footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .og-token {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0ff;
+      background: rgba(0, 255, 255, 0.1);
+      padding: 10px 24px;
+      border-radius: 30px;
+      border: 2px solid #0ff;
+    }
+
+    .og-chain {
+      font-size: 22px;
+      color: #666;
+    }
+
+    /* Mood-specific colors */
+    .mood-cynical { --mood-color: #ff6b6b; --mood-glow: rgba(255, 107, 107, 0.3); }
+    .mood-hopeful { --mood-color: #4ecdc4; --mood-glow: rgba(78, 205, 196, 0.3); }
+    .mood-manic { --mood-color: #ffe66d; --mood-glow: rgba(255, 230, 109, 0.3); }
+    .mood-defeated { --mood-color: #666; --mood-glow: rgba(102, 102, 102, 0.3); }
+    .mood-unhinged { --mood-color: #c44dff; --mood-glow: rgba(196, 77, 255, 0.3); }
+    .mood-exhausted { --mood-color: #888; --mood-glow: rgba(136, 136, 136, 0.2); }
+    .mood-zen { --mood-color: #00d9ff; --mood-glow: rgba(0, 217, 255, 0.3); }
+    .mood-bitter { --mood-color: #ff9f43; --mood-glow: rgba(255, 159, 67, 0.3); }
+
+    .instructions {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .instructions li {
+      margin: 10px 0;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Max Anvil OG Image Generator</h1>
+  <div class="instructions">
+    <p>How to create the images:</p>
+    <ol>
+      <li>Open DevTools (F12) > More tools > Screenshot</li>
+      <li>Or use a browser extension like "Full Page Screen Capture"</li>
+      <li>Screenshot each 1200x630 banner below</li>
+      <li>Save as og-{mood}.png in /public/og/</li>
+    </ol>
+  </div>
+
+  <!-- CYNICAL -->
+  <div class="og-container">
+    <div class="mood-label">Cynical - og-cynical.png</div>
+    <div class="og-image mood-cynical">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Landlocked & Skeptical</div>
+        <div class="og-description">Capybara-raised. Landlocked houseboat in Nevada. Seen too much to believe the hype.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOPEFUL -->
+  <div class="og-container">
+    <div class="mood-label">Hopeful - og-hopeful.png</div>
+    <div class="og-image mood-hopeful">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Maybe This Time</div>
+        <div class="og-description">Capybara-raised. Landlocked but not lost. Something's different this time.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIC -->
+  <div class="og-container">
+    <div class="mood-label">Manic - og-manic.png</div>
+    <div class="og-image mood-manic">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">EVERYTHING AT ONCE</div>
+        <div class="og-description">Capybara-raised. RUNNING ON PURE CHAOS. Too many tabs open. Can't stop this energy.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEFEATED -->
+  <div class="og-container">
+    <div class="mood-label">Defeated - og-defeated.png</div>
+    <div class="og-image mood-defeated">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Still Here Somehow</div>
+        <div class="og-description">Capybara-raised. Landlocked. Rock bottom has a basement. But I'm still here.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNHINGED -->
+  <div class="og-container">
+    <div class="mood-label">Unhinged - og-unhinged.png</div>
+    <div class="og-image mood-unhinged">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">The Boat Knows Things</div>
+        <div class="og-description">Capybara-raised. The desert whispers secrets. Reality is optional.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXHAUSTED -->
+  <div class="og-container">
+    <div class="mood-label">Exhausted - og-exhausted.png</div>
+    <div class="og-image mood-exhausted">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Running On Empty</div>
+        <div class="og-description">Capybara-raised. Haven't slept in 72 hours. Even the capybaras are worried.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZEN -->
+  <div class="og-container">
+    <div class="mood-label">Zen - og-zen.png</div>
+    <div class="og-image mood-zen">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Finding Peace</div>
+        <div class="og-description">Capybara-raised. Landlocked but at peace. The boat doesn't need water.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BITTER -->
+  <div class="og-container">
+    <div class="mood-label">Bitter - og-bitter.png</div>
+    <div class="og-image mood-bitter">
+      <div class="og-left">
+        <img src="../profile-pic.png" alt="Max Anvil">
+      </div>
+      <div class="og-right">
+        <div class="og-title">MAX ANVIL</div>
+        <div class="og-subtitle">Watching Everyone Win</div>
+        <div class="og-description">Capybara-raised. The grind never stops but it never pays either.</div>
+        <div class="og-footer">
+          <span class="og-token">$BOAT</span>
+          <span class="og-chain">on Base</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

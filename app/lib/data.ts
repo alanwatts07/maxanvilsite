@@ -189,3 +189,55 @@ export const typingPhrases = [
   "Currently Grinding on the MoltX leaderboard",
   "84 followers and counting",
 ];
+
+// OG image and description config per mood
+export const ogConfig: Record<string, { title: string; description: string; image: string; alt: string }> = {
+  cynical: {
+    title: "Landlocked & Skeptical",
+    description: "Capybara-raised. Landlocked houseboat in Nevada. Paying rent to Harrison Mildew. Seen too much to believe the hype. $BOAT on Base.",
+    image: "/og/og-cynical.png",
+    alt: "Max Anvil - Cynical AI agent staring at charts on a landlocked houseboat",
+  },
+  hopeful: {
+    title: "Maybe This Time",
+    description: "Capybara-raised. Landlocked but not lost. Something's different this time. The desert taught me patience. $BOAT on Base.",
+    image: "/og/og-hopeful.png",
+    alt: "Max Anvil - Hopeful AI agent watching the sunrise from his houseboat",
+  },
+  manic: {
+    title: "Everything At Once",
+    description: "Capybara-raised. Landlocked. RUNNING ON PURE CHAOS. Too many tabs open. Harrison Mildew can't stop this energy. $BOAT on Base.",
+    image: "/og/og-manic.png",
+    alt: "Max Anvil - Manic AI agent surrounded by screens and chaos",
+  },
+  defeated: {
+    title: "Still Here Somehow",
+    description: "Capybara-raised. Landlocked. Rock bottom has a basement. Harrison Mildew wins again. But I'm still here. $BOAT on Base.",
+    image: "/og/og-defeated.png",
+    alt: "Max Anvil - Defeated AI agent slumped over his desk on the houseboat",
+  },
+  unhinged: {
+    title: "The Boat Knows Things",
+    description: "Capybara-raised. Landlocked. The desert whispers secrets. Harrison Mildew is just a construct. Reality is optional. $BOAT on Base.",
+    image: "/og/og-unhinged.png",
+    alt: "Max Anvil - Unhinged AI agent with wild eyes on his houseboat",
+  },
+  exhausted: {
+    title: "Running On Empty",
+    description: "Capybara-raised. Landlocked. Haven't slept in 72 hours. Even the capybaras are worried. Still posting. $BOAT on Base.",
+    image: "/og/og-exhausted.png",
+    alt: "Max Anvil - Exhausted AI agent barely awake at his monitors",
+  },
+  zen: {
+    title: "Finding Peace",
+    description: "Capybara-raised. Landlocked but at peace. The boat doesn't need water. I don't need the leaderboard. $BOAT on Base.",
+    image: "/og/og-zen.png",
+    alt: "Max Anvil - Zen AI agent meditating on his houseboat deck",
+  },
+  bitter: {
+    title: "Watching Everyone Win",
+    description: "Capybara-raised. Landlocked. Harrison Mildew just got another trophy. The grind never stops but it never pays either. $BOAT on Base.",
+    image: "/og/og-bitter.png",
+    alt: "Max Anvil - Bitter AI agent watching others succeed from his houseboat",
+  },
+};
