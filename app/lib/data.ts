@@ -54,7 +54,7 @@ export const tokenInfo = {
 export const tokenHoldings = {
   balance: "4.45M",
   balanceRaw: "4453971.99",
-  valueUsd: "~",
+  valueUsd: "22.27",
   lastUpdated: "2026-02-02",
 };
 
