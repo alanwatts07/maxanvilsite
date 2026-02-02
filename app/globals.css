@@ -98,48 +98,56 @@ h1, h2, h3, h4, h5, h6 {
 .mood-cynical {
   --accent-primary: #d4a574; /* gold */
   --accent-secondary: #f6ad55; /* orange */
+  --accent-glow: rgba(212, 165, 116, 0.3);
 }
 
 .mood-hopeful {
   --accent-primary: #4fd1c5; /* cyan */
   --accent-secondary: #48bb78; /* green */
+  --accent-glow: rgba(79, 209, 197, 0.3);
 }
 
 .mood-manic {
   --accent-primary: #d53f8c; /* magenta */
   --accent-secondary: #ed64a6; /* pink */
+  --accent-glow: rgba(213, 63, 140, 0.4);
 }
 
 .mood-defeated {
   --accent-primary: #718096; /* gray */
   --accent-secondary: #fc8181; /* red */
+  --accent-glow: rgba(113, 128, 150, 0.2);
   --bg-primary: #050508;
 }
 
 .mood-unhinged {
   --accent-primary: #9f7aea; /* purple */
   --accent-secondary: #d53f8c; /* magenta */
+  --accent-glow: rgba(159, 122, 234, 0.4);
 }
 
 .mood-exhausted {
   --accent-primary: #718096; /* gray */
   --accent-secondary: #63b3ed; /* blue */
+  --accent-glow: rgba(113, 128, 150, 0.2);
   --bg-primary: #050508;
 }
 
 .mood-zen {
   --accent-primary: #4fd1c5; /* cyan */
   --accent-secondary: #38b2ac; /* teal */
+  --accent-glow: rgba(79, 209, 197, 0.25);
 }
 
 .mood-bitter {
   --accent-primary: #f6ad55; /* orange */
   --accent-secondary: #fc8181; /* red */
+  --accent-glow: rgba(246, 173, 85, 0.3);
 }
 
 /* Apply mood accent to key elements */
 [class*="mood-"] .glow-card:hover {
-  box-shadow: 0 0 30px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+  box-shadow: 0 0 30px var(--accent-glow);
 }
 
 [class*="mood-"] .gradient-text {
@@ -155,4 +163,76 @@ h1, h2, h3, h4, h5, h6 {
 
 [class*="mood-"] ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
+}
+
+/* Buttons - mood colored fills */
+[class*="mood-"] .btn-primary,
+[class*="mood-"] button[class*="bg-accent"],
+[class*="mood-"] a[class*="bg-accent"] {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+  border: none !important;
+  color: #0a0a0f !important;
+  font-weight: 600;
+}
+
+[class*="mood-"] .btn-primary:hover,
+[class*="mood-"] button[class*="bg-accent"]:hover,
+[class*="mood-"] a[class*="bg-accent"]:hover {
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* Bold/highlighted text uses mood colors */
+[class*="mood-"] strong,
+[class*="mood-"] b,
+[class*="mood-"] .text-accent-gold,
+[class*="mood-"] .text-accent-cyan,
+[class*="mood-"] .text-accent-orange {
+  color: var(--accent-primary) !important;
+}
+
+/* Secondary accent text */
+[class*="mood-"] .text-secondary-accent,
+[class*="mood-"] span[class*="text-accent"]:not(:first-child) {
+  color: var(--accent-secondary) !important;
+}
+
+/* Section headers with mood colors */
+[class*="mood-"] h2 span,
+[class*="mood-"] h3 span {
+  color: var(--accent-primary) !important;
+}
+
+/* Border accents */
+[class*="mood-"] .border-accent,
+[class*="mood-"] [class*="border-accent"] {
+  border-color: var(--accent-primary) !important;
+}
+
+/* Icon colors */
+[class*="mood-"] .icon-accent,
+[class*="mood-"] svg[class*="text-accent"] {
+  color: var(--accent-primary) !important;
+}
+
+/* Stats/numbers highlight */
+[class*="mood-"] .stat-value,
+[class*="mood-"] .text-3xl.font-bold,
+[class*="mood-"] .text-4xl.font-bold {
+  color: var(--accent-primary);
+}
+
+/* Links */
+[class*="mood-"] a:not(.btn-primary):hover {
+  color: var(--accent-secondary);
+}
+
+/* Card borders on hover */
+[class*="mood-"] .glow-card:hover {
+  border-color: var(--accent-primary) !important;
+}
+
+/* Progress bars */
+[class*="mood-"] .bg-gradient-to-r {
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)) !important;
 }

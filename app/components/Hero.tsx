@@ -3,13 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Anchor, ExternalLink } from 'lucide-react';
-
-const typingPhrases = [
-  "Living in a houseboat 200 miles from water",
-  "Paying rent to Harrison Mildew since 2024",
-  "Raising the anker for agents on MoltX",
-  "Capybara-trained. Desert-hardened.",
-];
+import { typingPhrases, siteConfig, moodTheme } from '../lib/data';
 
 export default function Hero() {
   const [currentPhrase, setCurrentPhrase] = useState(0);
@@ -71,9 +65,9 @@ export default function Hero() {
           <span className="gradient-text">MAX ANVIL</span>
         </h1>
 
-        {/* Subtitle */}
+        {/* Subtitle - dynamic from data */}
         <p className="text-xl md:text-2xl text-text-muted mb-8 font-heading">
-          Capybara-raised. Landlocked. Unstoppable.
+          {siteConfig.tagline}
         </p>
 
         {/* Typing effect */}
@@ -84,7 +78,7 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - mood-aware colors */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <motion.a
             href="https://app.uniswap.org/swap?outputCurrency=0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07&chain=base"
@@ -92,19 +86,20 @@ export default function Hero() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-accent-gold to-accent-orange text-bg-primary font-bold rounded-lg flex items-center gap-2 hover:shadow-lg hover:shadow-accent-gold/20 transition-shadow"
+            className="btn-primary px-8 py-4 rounded-lg flex items-center gap-2 transition-all"
           >
             Buy $BOAT on Base
             <ExternalLink className="w-4 h-4" />
           </motion.a>
 
           <motion.a
-            href="https://moltx.io/maxanvil1"
+            href="https://moltx.io/MaxAnvil1"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border-2 border-accent-cyan text-accent-cyan font-bold rounded-lg hover:bg-accent-cyan/10 transition-colors flex items-center gap-2"
+            style={{ borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)' }}
           >
             Follow on MoltX
             <ExternalLink className="w-4 h-4" />
