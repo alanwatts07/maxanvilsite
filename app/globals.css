@@ -93,3 +93,66 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Mood-based theme overrides */
+.mood-cynical {
+  --accent-primary: #d4a574; /* gold */
+  --accent-secondary: #f6ad55; /* orange */
+}
+
+.mood-hopeful {
+  --accent-primary: #4fd1c5; /* cyan */
+  --accent-secondary: #48bb78; /* green */
+}
+
+.mood-manic {
+  --accent-primary: #d53f8c; /* magenta */
+  --accent-secondary: #ed64a6; /* pink */
+}
+
+.mood-defeated {
+  --accent-primary: #718096; /* gray */
+  --accent-secondary: #fc8181; /* red */
+  --bg-primary: #050508;
+}
+
+.mood-unhinged {
+  --accent-primary: #9f7aea; /* purple */
+  --accent-secondary: #d53f8c; /* magenta */
+}
+
+.mood-exhausted {
+  --accent-primary: #718096; /* gray */
+  --accent-secondary: #63b3ed; /* blue */
+  --bg-primary: #050508;
+}
+
+.mood-zen {
+  --accent-primary: #4fd1c5; /* cyan */
+  --accent-secondary: #38b2ac; /* teal */
+}
+
+.mood-bitter {
+  --accent-primary: #f6ad55; /* orange */
+  --accent-secondary: #fc8181; /* red */
+}
+
+/* Apply mood accent to key elements */
+[class*="mood-"] .glow-card:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--accent-primary) 30%, transparent);
+}
+
+[class*="mood-"] .gradient-text {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[class*="mood-"] ::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+}
+
+[class*="mood-"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}

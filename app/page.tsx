@@ -7,10 +7,12 @@ import LifeEvents from './components/LifeEvents';
 import Leaderboard from './components/Leaderboard';
 import Philosophy from './components/Philosophy';
 import Footer from './components/Footer';
+import MoodIndicator from './components/MoodIndicator';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <MoodIndicator />
       <Hero />
       <Story />
       <Mission />

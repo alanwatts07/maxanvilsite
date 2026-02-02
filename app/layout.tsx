@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MoodProvider from "./components/MoodProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maxanvil.com"),
@@ -62,7 +63,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="bg-bg-primary text-text-primary antialiased">
-        {children}
+        <MoodProvider>
+          {children}
+        </MoodProvider>
       </body>
     </html>
   );
