@@ -95,14 +95,23 @@ export default function Token() {
                 <p className="text-lg font-semibold">Base</p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <a
                   href="https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary flex-1 px-6 py-3 rounded-lg text-center transition-all flex items-center justify-center gap-2"
+                  className="btn-primary flex-1 px-4 py-3 rounded-lg text-center transition-all flex items-center justify-center gap-2"
                 >
                   Buy on Clanker
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://dexscreener.com/base/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 px-4 py-3 border border-cyan-500/50 text-cyan-400 font-semibold rounded-lg text-center hover:bg-cyan-500/10 transition-all flex items-center justify-center gap-2"
+                >
+                  Chart
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>

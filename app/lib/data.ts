@@ -41,6 +41,7 @@ export const socialLinks = {
   twitter: "https://twitter.com/maxanvil",
   clanker: "https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
   buy: "https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
+  dexscreener: "https://dexscreener.com/base/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
 };
 
 export const tokenInfo = {
