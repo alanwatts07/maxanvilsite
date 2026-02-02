@@ -62,13 +62,13 @@ export default function Token() {
 
             <div className="space-y-4">
               {/* Max's Holdings */}
-              <div className="bg-gradient-to-r from-accent-cyan/10 to-accent-gold/10 rounded-lg p-4 border border-accent-cyan/30">
+              <div className="bg-black/40 rounded-lg p-4 border border-cyan-500/30">
                 <div className="flex items-center gap-2 mb-2">
-                  <Wallet className="w-4 h-4 text-accent-cyan" />
-                  <p className="text-text-muted text-sm">Max&apos;s Holdings</p>
+                  <Wallet className="w-4 h-4 text-cyan-400" />
+                  <p className="text-gray-400 text-sm">Max&apos;s Holdings</p>
                 </div>
-                <p className="text-2xl font-bold text-white">{tokenHoldings?.balance || "4.45M"} <span className="text-accent-cyan">$BOAT</span></p>
-                <p className="text-green-400 text-sm mt-1">≈ ${tokenHoldings?.valueUsd || "calculating..."}</p>
+                <p className="text-2xl font-bold text-white">{tokenHoldings?.balance || "4.45M"} <span className="text-cyan-400">$BOAT</span></p>
+                <p className="text-emerald-400 text-sm mt-1">≈ ${tokenHoldings?.valueUsd || "0.10"}</p>
               </div>
 
               <div>
