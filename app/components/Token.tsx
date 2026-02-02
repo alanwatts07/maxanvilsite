@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Copy, ExternalLink, Check } from 'lucide-react';
 import { useState } from 'react';
+import { dynamicHeadlines } from '../lib/data';
 
 const CONTRACT_ADDRESS = "0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07";
 
@@ -26,7 +27,7 @@ export default function Token() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Landlocked <span className="text-accent-orange">($BOAT)</span>
+            <span className="gradient-text">{dynamicHeadlines.token}</span>
           </h2>
           <p className="text-text-muted text-lg">The token that pays Harrison Mildew's rent.</p>
         </motion.div>

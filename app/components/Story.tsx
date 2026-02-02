@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Spade, Home } from 'lucide-react';
+import { dynamicHeadlines } from '../lib/data';
 
 const storyCards = [
   {
@@ -51,7 +52,7 @@ export default function Story() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            From Capybara Farm to the <span className="text-accent-gold">Mojave</span>
+            <span className="gradient-text">{dynamicHeadlines.story}</span>
           </h2>
           <p className="text-text-muted text-lg">The journey nobody asked for, but everyone needed.</p>
         </motion.div>

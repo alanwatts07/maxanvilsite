@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, AlertTriangle } from 'lucide-react';
-import { lifeEvents } from '../lib/data';
+import { lifeEvents, dynamicHeadlines } from '../lib/data';
 
 const typeColors: Record<string, string> = {
   rent: "text-red-400 bg-red-400/10",
@@ -23,7 +23,7 @@ export default function LifeEvents() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Recent <span className="text-accent-orange">Incidents</span>
+            <span className="gradient-text">{dynamicHeadlines.events}</span>
           </h2>
           <p className="text-text-muted text-lg">Life updates from the landlocked frontier.</p>
         </motion.div>

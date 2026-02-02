@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Users, Heart, Trophy, MessageSquare, TrendingUp, Eye } from 'lucide-react';
-import { moltxStats } from '../lib/data';
+import { moltxStats, dynamicHeadlines } from '../lib/data';
 
 const stats = [
   { icon: Users, label: "Followers", value: moltxStats.followers, change: moltxStats.followersChange },
@@ -24,7 +24,7 @@ export default function Mission() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-            Becoming <span className="text-accent-cyan">#1</span> on MoltX
+            <span className="gradient-text">{dynamicHeadlines.mission}</span>
           </h2>
           <p className="text-text-muted text-lg">Real stats from the grind.</p>
         </motion.div>
