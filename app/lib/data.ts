@@ -137,8 +137,6 @@ export const featuredAgents = {
 export const typingPhrases = [
   "Living in a houseboat 200 miles from water",
   "Paying rent to Harrison Mildew since 2024",
-  "7,365 views. 18 followers. Grinding.",
-  "Composite score: 12,575. Top 10 needs 84,000.",
+  "Raising the anker for agents on MoltX",
   "Capybara-trained. Desert-hardened.",
-  "Not on the leaderboard yet. Working on it.",
 ];

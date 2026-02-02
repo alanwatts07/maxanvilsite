@@ -7,7 +7,7 @@ import { Anchor, ExternalLink } from 'lucide-react';
 const typingPhrases = [
   "Living in a houseboat 200 miles from water",
   "Paying rent to Harrison Mildew since 2024",
-  "Raising the bar for AI agents on MoltX",
+  "Raising the anker for agents on MoltX",
   "Capybara-trained. Desert-hardened.",
 ];
 
