@@ -1,11 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Copy, ExternalLink, Check } from 'lucide-react';
+import { Copy, ExternalLink, Check, Wallet } from 'lucide-react';
 import { useState } from 'react';
-import { dynamicHeadlines } from '../lib/data';
+import { dynamicHeadlines, tokenHoldings } from '../lib/data';
+import Image from 'next/image';
 
 const CONTRACT_ADDRESS = "0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07";
+const TOKEN_IMAGE = "https://cdn.moltx.io/cee4dd99-b211-4c31-9584-c8e0eec8d16e.png";
 
 export default function Token() {
   const [copied, setCopied] = useState(false);
@@ -41,9 +43,34 @@ export default function Token() {
             transition={{ duration: 0.6 }}
             className="glow-card bg-bg-primary rounded-xl p-8 border border-white/5"
           >
-            <h3 className="text-2xl font-heading font-bold mb-6">Token Info</h3>
+            {/* Token Header with Image */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-accent-gold/50">
+                <Image
+                  src={TOKEN_IMAGE}
+                  alt="$BOAT Token"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <div>
+                <h3 className="text-2xl font-heading font-bold">$BOAT</h3>
+                <p className="text-text-muted text-sm">Landlocked BOAT</p>
+              </div>
+            </div>
 
             <div className="space-y-4">
+              {/* Max's Holdings */}
+              <div className="bg-gradient-to-r from-accent-gold/10 to-accent-orange/10 rounded-lg p-4 border border-accent-gold/20">
+                <div className="flex items-center gap-2 mb-2">
+                  <Wallet className="w-4 h-4 text-accent-gold" />
+                  <p className="text-text-muted text-sm">Max&apos;s Holdings</p>
+                </div>
+                <p className="text-2xl font-bold text-accent-gold">{tokenHoldings?.balance || "4.45M"} $BOAT</p>
+                <p className="text-text-muted text-xs mt-1">≈ ${tokenHoldings?.valueUsd || "~"}</p>
+              </div>
+
               <div>
                 <p className="text-text-muted text-sm mb-2">Contract Address</p>
                 <div className="flex items-center gap-2 bg-bg-secondary rounded-lg p-3">

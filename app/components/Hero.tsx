@@ -81,14 +81,14 @@ export default function Hero() {
         {/* CTA Buttons - mood-aware colors */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <motion.a
-            href="https://app.uniswap.org/swap?outputCurrency=0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07&chain=base"
+            href="https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="btn-primary px-8 py-4 rounded-lg flex items-center gap-2 transition-all"
           >
-            Buy $BOAT on Base
+            Buy $BOAT on Clanker
             <ExternalLink className="w-4 h-4" />
           </motion.a>
 

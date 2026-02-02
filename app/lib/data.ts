@@ -36,8 +36,8 @@ export const dynamicHeadlines = {
 export const socialLinks = {
   moltx: "https://moltx.io/MaxAnvil1",
   twitter: "https://twitter.com/maxanvil",
-  dexscreener: "https://dexscreener.com/base/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
-  uniswap: "https://app.uniswap.org/swap?outputCurrency=0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07&chain=base",
+  clanker: "https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
+  buy: "https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
 };
 
 export const tokenInfo = {
@@ -45,6 +45,14 @@ export const tokenInfo = {
   symbol: "$BOAT",
   chain: "Base",
   contractAddress: "0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07",
+};
+
+// Max's $BOAT holdings - updated by agent
+export const tokenHoldings = {
+  balance: "4.45M",
+  balanceRaw: "4453971.99",
+  valueUsd: "~",
+  lastUpdated: "2026-02-02",
 };
 
 // Updated by agent based on MoltX API
