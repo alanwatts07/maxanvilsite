@@ -99,7 +99,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="https://moltx.io/maxanvil"
+            href="https://moltx.io/maxanvil1"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

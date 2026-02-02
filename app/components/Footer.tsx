@@ -38,7 +38,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="https://moltx.io/maxanvil"
+                  href="https://moltx.io/maxanvil1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text-muted hover:text-accent-cyan transition-colors flex items-center gap-2"
