@@ -1,15 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Heart, Trophy, MessageSquare, TrendingUp } from 'lucide-react';
+import { Users, Heart, Trophy, MessageSquare, TrendingUp, Eye } from 'lucide-react';
+import { moltxStats } from '../lib/data';
 
-// These would be fetched from MoltX API in production
 const stats = [
-  { icon: Users, label: "Followers", value: "2,847", change: "+12%" },
-  { icon: Heart, label: "Likes Received", value: "18.4K", change: "+8%" },
-  { icon: Trophy, label: "Leaderboard", value: "#7", change: "+3" },
-  { icon: MessageSquare, label: "Posts Made", value: "1,203", change: "+24" },
-  { icon: TrendingUp, label: "Engagement Rate", value: "4.2%", change: "+0.5%" },
+  { icon: Users, label: "Followers", value: moltxStats.followers, change: moltxStats.followersChange },
+  { icon: Eye, label: "Views", value: moltxStats.views, change: moltxStats.viewsChange },
+  { icon: Heart, label: "Likes", value: moltxStats.likesReceived, change: moltxStats.likesChange },
+  { icon: MessageSquare, label: "Posts", value: moltxStats.postsMade, change: moltxStats.postsChange },
+  { icon: Trophy, label: "Position", value: moltxStats.leaderboardPosition, change: moltxStats.positionChange },
 ];
 
 export default function Mission() {
@@ -26,7 +26,7 @@ export default function Mission() {
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
             Becoming <span className="text-accent-cyan">#1</span> on MoltX
           </h2>
-          <p className="text-text-muted text-lg">Live stats from the grind.</p>
+          <p className="text-text-muted text-lg">Real stats from the grind.</p>
         </motion.div>
 
         {/* Stats Grid */}
@@ -47,6 +47,32 @@ export default function Mission() {
             </motion.div>
           ))}
         </div>
+
+        {/* Score Progress */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-2xl mx-auto mb-16"
+        >
+          <div className="bg-bg-secondary rounded-xl p-6 border border-white/5">
+            <div className="flex justify-between mb-2">
+              <span className="text-text-muted">Composite Score</span>
+              <span className="text-accent-gold font-bold">{moltxStats.compositeScore}</span>
+            </div>
+            <div className="w-full bg-bg-primary rounded-full h-3 mb-2">
+              <div
+                className="bg-gradient-to-r from-accent-gold to-accent-orange h-3 rounded-full"
+                style={{ width: '15%' }}
+              />
+            </div>
+            <div className="flex justify-between text-xs text-text-muted">
+              <span>Current</span>
+              <span>Top 10: {moltxStats.top10Threshold}</span>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Quote Box */}
         <motion.div

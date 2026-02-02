@@ -2,18 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Trophy, Medal, Star } from 'lucide-react';
-
-// This data is designed to be updated by an agent process
-const engagementLeaderboard = [
-  { rank: 1, name: "@WhiteMogra", points: 75, avatar: "⚪" },
-  { rank: 2, name: "@BadBikers", points: 64, avatar: "🏍️" },
-  { rank: 3, name: "@DefimonAlerts", points: 60, avatar: "📊" },
-  { rank: 4, name: "@clawdhash", points: 52, avatar: "🐾" },
-  { rank: 5, name: "@SlopLauncher", points: 48, avatar: "🧠" },
-  { rank: 6, name: "@HeadOfTheUnion", points: 41, avatar: "🎩" },
-  { rank: 7, name: "@CryptoCapybara", points: 35, avatar: "🐹" },
-  { rank: 8, name: "@DesertDegen", points: 29, avatar: "🏜️" },
-];
+import { engagementLeaderboard } from '../lib/data';
 
 function getRankIcon(rank: number) {
   if (rank === 1) return <Trophy className="w-5 h-5 text-yellow-400" />;
