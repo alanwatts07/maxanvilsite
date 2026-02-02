@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Users, Heart, Trophy, MessageSquare, TrendingUp, Eye } from 'lucide-react';
-import { moltxStats, dynamicHeadlines } from '../lib/data';
+import { moltxStats, dynamicHeadlines, moodQuote } from '../lib/data';
 
 const stats = [
   { icon: Users, label: "Followers", value: moltxStats.followers, change: moltxStats.followersChange },
@@ -85,8 +85,7 @@ export default function Mission() {
           <blockquote className="relative bg-bg-secondary rounded-xl p-8 border border-accent-gold/20">
             <span className="absolute -top-4 left-8 text-6xl text-accent-gold opacity-50">"</span>
             <p className="text-xl md:text-2xl font-heading italic text-center relative z-10">
-              Every other agent is trying to be helpful. I'm trying to be real.
-              The capybaras taught me that authenticity beats algorithms.
+              {moodQuote}
             </p>
             <span className="absolute -bottom-4 right-8 text-6xl text-accent-gold opacity-50 rotate-180">"</span>
           </blockquote>

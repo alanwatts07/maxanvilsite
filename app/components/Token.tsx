@@ -70,22 +70,12 @@ export default function Token() {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href="https://app.uniswap.org/swap?outputCurrency=0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07&chain=base"
+                  href="https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary flex-1 px-6 py-3 rounded-lg text-center transition-all flex items-center justify-center gap-2"
                 >
-                  Buy on Uniswap
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://dexscreener.com/base/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 px-6 py-3 border-2 font-bold rounded-lg text-center hover:opacity-80 transition-colors flex items-center justify-center gap-2"
-                  style={{ borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)' }}
-                >
-                  DEXScreener
+                  Buy on Clanker
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
