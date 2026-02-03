@@ -42,7 +42,7 @@ export default function VelocityLeaderboard() {
   const fetchData = async () => {
     try {
       // Fetch from raw GitHub (updates without Vercel deploy)
-      const res = await fetch('https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/main/data/velocity.json?' + Date.now());
+      const res = await fetch('https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/master/data/velocity.json?' + Date.now());
       if (res.ok) {
         setData(await res.json());
       } else {

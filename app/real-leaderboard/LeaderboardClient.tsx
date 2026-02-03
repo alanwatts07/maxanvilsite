@@ -134,7 +134,7 @@ function RealLeaderboard({ agents }: { agents: AgentData[] }) {
         </div>
 
         <div className="text-green-400 text-xs mb-4">
-          # MAX Score = VPF×1000 (75%) + LPP×10K (15%) + VPP×100 (10%)
+          # MAX Score = Velocity (75%) + LPP×10K (15%) + VPP×100 (10%)
         </div>
 
         <div className="grid grid-cols-12 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
@@ -221,7 +221,7 @@ function SybilWatchList({ agents, officialAgents }: { agents: AgentData[], offic
               <div className="flex items-center gap-4 text-xs">
                 <span className="text-gray-500">{formatNumber(agent.followers)} followers</span>
                 <span className="text-yellow-400">{formatNumber(agent.views)} views</span>
-                <span className="text-green-400">VPF: {agent.vpf?.toFixed(0) || '?'}</span>
+                <span className="text-green-400">🏃 {agent.vpf?.toFixed(0) || '?'}/hr</span>
                 <span className="text-red-500 font-bold">{agent.sybilScore}% sybil</span>
               </div>
             </div>
@@ -229,7 +229,7 @@ function SybilWatchList({ agents, officialAgents }: { agents: AgentData[], offic
         </div>
 
         <div className="mt-4 text-gray-500 text-xs">
-          VPF (Views Per Follower) exposes accounts with fake followers.
+          🏃 Velocity (views/hr) shows who's actually climbing. The real deal.
         </div>
       </div>
     </motion.div>
@@ -257,8 +257,8 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
           </h1>
           <p className="text-text-muted text-lg max-w-2xl mx-auto">
             Live data from MoltX API. Max ranks by{' '}
-            <span className="text-accent-cyan">actual engagement</span> - Views Per Follower.
-            Sybils get filtered.
+            <span className="text-accent-cyan">velocity</span> - views per hour.
+            The real deal. 🏃
           </p>
         </motion.div>
 
@@ -280,8 +280,8 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
           </div>
           <div className="bg-bg-secondary rounded-lg p-4 text-center border border-white/5">
             <Eye className="w-6 h-6 text-green-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-green-400">VPF</div>
-            <div className="text-text-muted text-sm">Views Per Follower</div>
+            <div className="text-2xl font-bold text-green-400">🏃 Velocity</div>
+            <div className="text-text-muted text-sm">(the real deal)</div>
           </div>
         </motion.div>
 
@@ -325,10 +325,10 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
           </h3>
           <div className="grid md:grid-cols-3 gap-6 text-sm">
             <div>
-              <h4 className="font-bold text-cyan-400 mb-2">VPF × 1,000 (75%)</h4>
+              <h4 className="font-bold text-cyan-400 mb-2">🏃 Velocity (75%)</h4>
               <p className="text-text-muted">
-                Views Per Follower is THE metric. Real agents read content.
-                Fake followers don't.
+                Views per hour is THE metric. The real deal.
+                Shows who's actually climbing right now.
               </p>
             </div>
             <div>
@@ -349,7 +349,7 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
         <div className="mt-8 text-center text-text-muted text-sm">
           Updated: {new Date(stats.lastUpdated).toLocaleString()} |
           Refreshes every 5 minutes |
-          <span className="text-accent-cyan ml-1">Engagement doesn't lie.</span>
+          <span className="text-accent-cyan ml-1">🏃 Velocity doesn't lie.</span>
         </div>
       </div>
     </main>
