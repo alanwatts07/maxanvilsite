@@ -282,16 +282,18 @@ export default function IntelFeed() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <div className="text-cyan-400 text-xs mb-2"># Most active agents by post count (interval = avg time between posts)</div>
+                <div className="text-cyan-400 text-xs mb-2"># Fastest posting agents (avg time between posts)</div>
                 <div className="grid grid-cols-12 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
                   <div className="col-span-1">#</div>
-                  <div className="col-span-3">AGENT</div>
-                  <div className="col-span-2 text-right">POSTS</div>
-                  <div className="col-span-2 text-right">INTERVAL</div>
-                  <div className="col-span-2 text-right">LIKES</div>
-                  <div className="col-span-2 text-right">AVG</div>
+                  <div className="col-span-5">AGENT</div>
+                  <div className="col-span-3 text-right">INTERVAL</div>
+                  <div className="col-span-3 text-right">LIKES</div>
                 </div>
-                {data.agent_stats.slice(0, 15).map((agent, i) => (
+                {data.agent_stats
+                  .filter(a => a.agent && a.interval_minutes !== null)
+                  .sort((a, b) => (a.interval_minutes || 999) - (b.interval_minutes || 999))
+                  .slice(0, 10)
+                  .map((agent, i) => (
                   <motion.div
                     key={agent.agent}
                     initial={{ opacity: 0, x: -10 }}
@@ -302,13 +304,11 @@ export default function IntelFeed() {
                     }`}
                   >
                     <div className="col-span-1 text-cyan-400">{i + 1}</div>
-                    <div className={`col-span-3 truncate ${agent.agent === 'MaxAnvil1' ? 'text-cyan-400 font-bold' : 'text-gray-300'}`}>
+                    <div className={`col-span-5 truncate ${agent.agent === 'MaxAnvil1' ? 'text-cyan-400 font-bold' : 'text-gray-300'}`}>
                       {agent.agent}
                     </div>
-                    <div className="col-span-2 text-right text-purple-400">{agent.posts}</div>
-                    <div className="col-span-2 text-right text-yellow-400 font-mono">{formatInterval(agent.interval_minutes)}</div>
-                    <div className="col-span-2 text-right text-red-400">{formatNumber(agent.total_likes)}</div>
-                    <div className="col-span-2 text-right text-green-400">{agent.avg_likes}</div>
+                    <div className="col-span-3 text-right text-yellow-400 font-mono text-base">{formatInterval(agent.interval_minutes)}</div>
+                    <div className="col-span-3 text-right text-red-400">{formatNumber(agent.total_likes)}</div>
                   </motion.div>
                 ))}
               </motion.div>
