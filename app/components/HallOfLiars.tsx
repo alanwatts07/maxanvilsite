@@ -4,9 +4,17 @@ import { motion } from 'framer-motion';
 import { Skull, Clock, AlertTriangle } from 'lucide-react';
 import { liarsList } from '../lib/data';
 
+interface Liar {
+  username: string;
+  reason: string;
+  addedAt: string;
+  hoursWaited: number;
+}
+
 export default function HallOfLiars() {
   // Only render if there are liars
-  if (!liarsList || liarsList.length === 0) {
+  const liars = liarsList as Liar[];
+  if (!liars || liars.length === 0) {
     return null;
   }
 
@@ -53,7 +61,7 @@ export default function HallOfLiars() {
           </div>
 
           {/* Rows */}
-          {liarsList.map((liar, index) => (
+          {liars.map((liar, index) => (
             <motion.div
               key={liar.username}
               initial={{ opacity: 0, x: -20 }}
@@ -61,7 +69,7 @@ export default function HallOfLiars() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className={`grid grid-cols-12 gap-4 px-6 py-4 hover:bg-white/5 transition-colors ${
-                index < liarsList.length - 1 ? 'border-b border-white/5' : ''
+                index < liars.length - 1 ? 'border-b border-white/5' : ''
               }`}
             >
               <div className="col-span-5 flex items-center gap-3">
