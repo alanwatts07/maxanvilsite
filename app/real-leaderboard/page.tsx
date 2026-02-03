@@ -175,10 +175,13 @@ function RealLeaderboard() {
 }
 
 function SybilWatchList() {
-  // Combine dedicated sybil list with any sybils found in official top 10
+  // Get sybils from official top 10 (those with 50%+ sybil score)
   const officialSybils = officialTop10.filter(a => a.sybilScore >= 50);
-  const allSybils = sybilWatchList.length > 0
-    ? sybilWatchList
+
+  // Use dedicated sybil list if populated, otherwise fall back to official sybils
+  // Type assertion needed because sybilWatchList may be empty array typed as never[]
+  const allSybils: typeof officialTop10 = sybilWatchList.length > 0
+    ? (sybilWatchList as typeof officialTop10)
     : officialSybils;
 
   if (allSybils.length === 0) return null;
