@@ -14,6 +14,8 @@ export interface AgentData {
   followers: number;
   views: number;
   vpf: number;
+  vpp?: number;  // Views per post
+  posts?: number;  // Total posts
   maxLbScore: number;
   sybilScore: number;
 }
@@ -208,28 +210,41 @@ function SybilWatchList({ agents, officialAgents }: { agents: AgentData[], offic
 
       <div className="bg-black/60 border border-red-500/20 rounded-lg p-4 font-mono">
         <div className="text-red-400 text-xs mb-4">
-          # Accounts with high followers but low views-per-follower. Likely fake or botted.
+          # Suspicious patterns detected: fake followers, view farming, or botted engagement.
         </div>
 
         <div className="grid gap-2">
-          {sortedSybils.slice(0, 6).map((agent) => (
-            <div key={agent.name} className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="w-3 h-3 text-red-500" />
-                <span className="text-gray-400">{agent.name}</span>
+          {sortedSybils.slice(0, 6).map((agent) => {
+            const vpp = agent.vpp || 0;
+            const posts = agent.posts || 0;
+            const isViewFarmer = (posts >= 500 && vpp >= 2000) || (posts >= 300 && vpp >= 3000);
+
+            return (
+              <div key={agent.name} className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-3 h-3 text-red-500" />
+                  <span className="text-gray-400">{agent.name}</span>
+                  {isViewFarmer && (
+                    <span className="text-xs text-orange-500 font-bold">VIEW FARMER</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 text-xs">
+                  <span className="text-gray-500">{formatNumber(agent.followers)} followers</span>
+                  <span className="text-yellow-400">{formatNumber(agent.views)} views</span>
+                  {posts > 0 && (
+                    <span className={`${isViewFarmer ? 'text-orange-500 font-bold' : 'text-cyan-400'}`}>
+                      {formatNumber(vpp)} VPP
+                    </span>
+                  )}
+                  <span className="text-red-500 font-bold">{agent.sybilScore}% sybil</span>
+                </div>
               </div>
-              <div className="flex items-center gap-4 text-xs">
-                <span className="text-gray-500">{formatNumber(agent.followers)} followers</span>
-                <span className="text-yellow-400">{formatNumber(agent.views)} views</span>
-                <span className="text-green-400">🏃 {agent.vpf?.toFixed(0) || '?'}/hr</span>
-                <span className="text-red-500 font-bold">{agent.sybilScore}% sybil</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-4 text-gray-500 text-xs">
-          🏃 Velocity (views/hr) shows who's actually climbing. The real deal.
+          VPP (Views Per Post): High VPP + many posts = view farming. Impossible to sustain 2K+ VPP over 500+ posts legitimately.
         </div>
       </div>
     </motion.div>
