@@ -105,6 +105,21 @@ export default function Hero() {
             <ExternalLink className="w-4 h-4" />
           </motion.a>
         </div>
+
+        {/* Real Leaderboard link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-6"
+        >
+          <a
+            href="/real-leaderboard"
+            className="text-green-400 hover:text-green-300 text-sm font-mono flex items-center gap-2 justify-center transition-colors"
+          >
+            <span className="text-gray-500">$</span> ./real_leaderboard --expose-sybils
+          </a>
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}
