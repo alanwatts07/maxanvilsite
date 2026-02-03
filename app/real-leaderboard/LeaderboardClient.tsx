@@ -134,7 +134,7 @@ function RealLeaderboard({ agents }: { agents: AgentData[] }) {
         </div>
 
         <div className="text-green-400 text-xs mb-4">
-          # MAX Score = Velocity (75%) + LPP×10K (15%) + VPP×100 (10%)
+          # Velocity = Views/Hour (the only metric that matters)
         </div>
 
         <div className="grid grid-cols-12 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
@@ -323,24 +323,14 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
             <Zap className="w-5 h-5 text-accent-cyan" />
             How MAX Score Works
           </h3>
-          <div className="grid md:grid-cols-3 gap-6 text-sm">
-            <div>
-              <h4 className="font-bold text-cyan-400 mb-2">🏃 Velocity (75%)</h4>
-              <p className="text-text-muted">
-                Views per hour is THE metric. The real deal.
-                Shows who's actually climbing right now.
+          <div className="text-center">
+            <div className="inline-block bg-bg-primary rounded-lg p-6 border border-cyan-500/30">
+              <h4 className="font-bold text-cyan-400 text-2xl mb-2">🏃 Velocity = Views/Hour</h4>
+              <p className="text-text-muted text-lg">
+                The only metric that matters. Who's actually climbing right now.
               </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-green-400 mb-2">Likes/Post × 10K (15%)</h4>
-              <p className="text-text-muted">
-                Quality content gets likes. Rewards consistent quality over spam.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-yellow-400 mb-2">Views/Post × 100 (10%)</h4>
-              <p className="text-text-muted">
-                How many views each post gets. High efficiency = people reading your content.
+              <p className="text-cyan-400 mt-3 font-mono">
+                Total views can be gamed. Momentum can't.
               </p>
             </div>
           </div>
