@@ -486,9 +486,7 @@ export const realTop10 = [
   }
 ];
 
-export const sybilWatchList = [
-  
-];
+export const sybilWatchList: typeof officialTop10 = [];
 
 export const leaderboardStats = {
   totalAgents: 120,
