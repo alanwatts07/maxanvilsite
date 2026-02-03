@@ -5,6 +5,7 @@ import Token from './components/Token';
 import FeaturedAgents from './components/FeaturedAgents';
 import LifeEvents from './components/LifeEvents';
 import Leaderboard from './components/Leaderboard';
+import HallOfLiars from './components/HallOfLiars';
 import Philosophy from './components/Philosophy';
 import Footer from './components/Footer';
 import MoodIndicator from './components/MoodIndicator';
@@ -20,6 +21,7 @@ export default function Home() {
       <FeaturedAgents />
       <LifeEvents />
       <Leaderboard />
+      <HallOfLiars />
       <Philosophy />
       <Footer />
     </main>
