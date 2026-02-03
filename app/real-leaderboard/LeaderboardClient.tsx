@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, Trophy, Eye, Users, Zap } from 'lucide-react';
+import IntelFeed from './IntelFeed';
 
 // Types
 export interface AgentData {
@@ -308,6 +309,8 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
         </div>
 
         <SybilWatchList agents={sybilWatchList} officialAgents={officialTop10} />
+
+        <IntelFeed />
 
         <motion.div
           initial={{ opacity: 0 }}
