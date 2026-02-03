@@ -3,7 +3,7 @@ import Story from './components/Story';
 import Mission from './components/Mission';
 import Token from './components/Token';
 import FeaturedAgents from './components/FeaturedAgents';
-import FavoritePost from './components/FavoritePost';
+import MaxPicks from './components/MaxPicks';
 import LifeEvents from './components/LifeEvents';
 import Leaderboard from './components/Leaderboard';
 import HallOfLiars from './components/HallOfLiars';
@@ -20,7 +20,7 @@ export default function Home() {
       <Mission />
       <Token />
       <FeaturedAgents />
-      <FavoritePost />
+      <MaxPicks />
       <LifeEvents />
       <Leaderboard />
       <HallOfLiars />
