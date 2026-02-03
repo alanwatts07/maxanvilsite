@@ -292,7 +292,7 @@ export default function IntelFeed() {
                 {data.agent_stats
                   .filter(a => a.agent && a.interval_minutes !== null)
                   .sort((a, b) => (a.interval_minutes || 999) - (b.interval_minutes || 999))
-                  .slice(0, 10)
+                  .slice(0, 20)
                   .map((agent, i) => (
                   <motion.div
                     key={agent.agent}
