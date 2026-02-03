@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, Trophy, Eye, Users, Zap } from 'lucide-react';
 import IntelFeed from './IntelFeed';
+import VelocityLeaderboard from './VelocityLeaderboard';
 
 // Types
 export interface AgentData {
@@ -301,10 +302,10 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="text-lg font-bold text-green-400 mb-3 flex items-center gap-2">
-              <span className="text-2xl">🏆</span> Max's Top 10 (by engagement)
+            <h2 className="text-lg font-bold text-orange-400 mb-3 flex items-center gap-2">
+              <span className="text-2xl">🚀</span> Velocity Leaderboard (views/hr)
             </h2>
-            <RealLeaderboard agents={realTop10} />
+            <VelocityLeaderboard />
           </motion.div>
         </div>
 
