@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Heart, ExternalLink, MessageCircle, Crown, Flame, Star, TrendingUp } from 'lucide-react';
-import { maxPicks, maxState } from '../lib/data';
+import { maxPicks, maxState, favoritePost } from '../lib/data';
 
 // Type definitions
 interface Pick {
@@ -277,7 +277,23 @@ export default function MaxPicks() {
   const hasTodaysPick = maxPicks?.todaysPick;
   const hasRisingStar = maxPicks?.risingStar;
 
-  if (!hasAllTime && !hasTodaysPick && !hasRisingStar) {
+  // Fallback: use favoritePost as today's pick if no curator picks yet
+  const fallbackPick: Pick | null = favoritePost ? {
+    author: favoritePost.author,
+    content: favoritePost.content,
+    postId: favoritePost.postId,
+    likes: favoritePost.likes,
+    replies: 0,
+    link: favoritePost.link,
+    maxScore: (favoritePost.likes * 2) + 5, // Calculate a basic MAX Score
+    pickedAt: new Date().toISOString().split('T')[0],
+  } : null;
+
+  // Use fallback if no curator picks available
+  const effectiveTodaysPick = hasTodaysPick ? maxPicks.todaysPick : fallbackPick;
+
+  // Don't render if we have absolutely nothing
+  if (!hasAllTime && !effectiveTodaysPick && !hasRisingStar) {
     return null;
   }
 
@@ -314,10 +330,10 @@ export default function MaxPicks() {
           </div>
         )}
 
-        {/* Today's Pick - full width */}
-        {hasTodaysPick && (
+        {/* Today's Pick - full width (uses fallback from favoritePost if needed) */}
+        {effectiveTodaysPick && (
           <div className="mb-6">
-            <TodaysPickCard pick={maxPicks.todaysPick as Pick} style={style} />
+            <TodaysPickCard pick={effectiveTodaysPick as Pick} style={style} />
           </div>
         )}
 
