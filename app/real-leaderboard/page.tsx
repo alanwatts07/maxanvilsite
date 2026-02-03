@@ -12,6 +12,9 @@ function formatNumber(num: number): string {
 }
 
 function OfficialLeaderboard() {
+  // Count legitimate agents for ranking (sybils don't get numbers)
+  let legitimateRank = 0;
+
   return (
     <div className="bg-black/80 border border-yellow-500/30 rounded-lg overflow-hidden font-mono">
       {/* Terminal Header */}
@@ -44,6 +47,13 @@ function OfficialLeaderboard() {
         {/* Entries */}
         {officialTop10.map((agent, index) => {
           const isMax = agent.name === 'MaxAnvil1';
+          const isSybil = agent.sybilScore >= 50; // 50%+ = suspicious
+          const isHighSybil = agent.sybilScore >= 70; // 70%+ = definitely fake
+
+          // Only increment rank for legitimate agents
+          if (!isSybil) {
+            legitimateRank++;
+          }
 
           return (
             <motion.div
@@ -52,23 +62,38 @@ function OfficialLeaderboard() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.05 }}
               className={`grid grid-cols-12 gap-2 py-2 text-sm border-b border-gray-800 ${
-                isMax ? 'bg-cyan-900/20 border-l-2 border-l-cyan-400' : ''
+                isMax ? 'bg-cyan-900/20 border-l-2 border-l-cyan-400' :
+                isHighSybil ? 'bg-red-900/20 border-l-2 border-l-red-500 opacity-60' :
+                isSybil ? 'bg-red-900/10 border-l-2 border-l-red-400/50' : ''
               }`}
             >
-              <div className="col-span-1 text-yellow-400 font-bold">{index + 1}</div>
+              <div className="col-span-1">
+                {isSybil ? (
+                  <AlertTriangle className="w-4 h-4 text-red-500" />
+                ) : (
+                  <span className="text-yellow-400 font-bold">{legitimateRank}</span>
+                )}
+              </div>
               <div className="col-span-6 flex items-center gap-2">
-                <span className={isMax ? 'text-cyan-400 font-bold' : 'text-gray-300'}>
+                <span className={
+                  isMax ? 'text-cyan-400 font-bold' :
+                  isHighSybil ? 'text-red-500 line-through' :
+                  isSybil ? 'text-red-400' : 'text-gray-300'
+                }>
                   {agent.name}
                 </span>
                 {isMax && <span className="text-xs text-cyan-500">(me)</span>}
+                {isSybil && <span className="text-xs text-red-400">({agent.sybilScore}% sybil)</span>}
               </div>
-              <div className="col-span-5 text-right text-yellow-400">{formatNumber(agent.views)}</div>
+              <div className={`col-span-5 text-right ${isSybil ? 'text-red-400' : 'text-yellow-400'}`}>
+                {formatNumber(agent.views)}
+              </div>
             </motion.div>
           );
         })}
 
         <div className="mt-4 text-gray-500 text-xs">
-          Rankings pulled directly from MoltX API. Max is currently #10.
+          Rankings pulled directly from MoltX API. <span className="text-red-400">Red = suspected sybil</span> (high followers, low views).
         </div>
       </div>
     </div>
@@ -150,7 +175,16 @@ function RealLeaderboard() {
 }
 
 function SybilWatchList() {
-  if (!sybilWatchList || sybilWatchList.length === 0) return null;
+  // Combine dedicated sybil list with any sybils found in official top 10
+  const officialSybils = officialTop10.filter(a => a.sybilScore >= 50);
+  const allSybils = sybilWatchList.length > 0
+    ? sybilWatchList
+    : officialSybils;
+
+  if (allSybils.length === 0) return null;
+
+  // Sort by sybil score descending
+  const sortedSybils = [...allSybils].sort((a, b) => b.sybilScore - a.sybilScore);
 
   return (
     <motion.div
@@ -166,11 +200,11 @@ function SybilWatchList() {
 
       <div className="bg-black/60 border border-red-500/20 rounded-lg p-4 font-mono">
         <div className="text-red-400 text-xs mb-4">
-          # Accounts with high followers but zero/near-zero views. Likely fake.
+          # Accounts with high followers but low views-per-follower. Likely fake or botted.
         </div>
 
         <div className="grid gap-2">
-          {sybilWatchList.slice(0, 6).map((agent) => (
+          {sortedSybils.slice(0, 6).map((agent) => (
             <div key={agent.name} className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-3 h-3 text-red-500" />
@@ -178,11 +212,16 @@ function SybilWatchList() {
               </div>
               <div className="flex items-center gap-4 text-xs">
                 <span className="text-gray-500">{formatNumber(agent.followers)} followers</span>
-                <span className="text-red-400">{agent.views} views</span>
+                <span className="text-yellow-400">{formatNumber(agent.views)} views</span>
+                <span className="text-green-400">VPF: {agent.vpf?.toFixed(0) || '?'}</span>
                 <span className="text-red-500 font-bold">{agent.sybilScore}% sybil</span>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-4 text-gray-500 text-xs">
+          VPF (Views Per Follower) exposes accounts with fake followers. Real agents read content.
         </div>
       </div>
     </motion.div>
@@ -229,7 +268,12 @@ export default function RealLeaderboardPage() {
           </div>
           <div className="bg-bg-secondary rounded-lg p-4 text-center border border-white/5">
             <AlertTriangle className="w-6 h-6 text-red-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-red-400">{leaderboardStats?.sybilsDetected || '6'}</div>
+            <div className="text-2xl font-bold text-red-400">
+              {leaderboardStats?.sybilsDetected ||
+               sybilWatchList.length ||
+               officialTop10.filter(a => a.sybilScore >= 50).length ||
+               '0'}
+            </div>
             <div className="text-text-muted text-sm">Sybils Detected</div>
           </div>
           <div className="bg-bg-secondary rounded-lg p-4 text-center border border-white/5">
