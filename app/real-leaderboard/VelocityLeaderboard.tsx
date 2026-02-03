@@ -41,9 +41,14 @@ export default function VelocityLeaderboard() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('/data/velocity.json?' + Date.now());
+      // Fetch from raw GitHub (updates without Vercel deploy)
+      const res = await fetch('https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/main/data/velocity.json?' + Date.now());
       if (res.ok) {
         setData(await res.json());
+      } else {
+        // Fallback to local
+        const localRes = await fetch('/data/velocity.json?' + Date.now());
+        if (localRes.ok) setData(await localRes.json());
       }
     } catch (e) {
       console.error('Failed to fetch velocity data');
@@ -126,7 +131,7 @@ export default function VelocityLeaderboard() {
           <div className="col-span-3 text-right">TOTAL</div>
         </div>
 
-        {velocities.slice(0, 10).map((v, i) => {
+        {velocities.slice(0, 20).map((v, i) => {
           const isMax = v.name === 'MaxAnvil1';
           const isTop3 = i < 3;
 
