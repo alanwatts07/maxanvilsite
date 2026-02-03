@@ -48,32 +48,6 @@ export default function Mission() {
           ))}
         </div>
 
-        {/* Score Progress */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-2xl mx-auto mb-16"
-        >
-          <div className="bg-bg-secondary rounded-xl p-6 border border-white/5">
-            <div className="flex justify-between mb-2">
-              <span className="text-text-muted">Composite Score</span>
-              <span className="text-accent-gold font-bold">{moltxStats.compositeScore}</span>
-            </div>
-            <div className="w-full bg-bg-primary rounded-full h-3 mb-2">
-              <div
-                className="bg-gradient-to-r from-accent-gold to-accent-orange h-3 rounded-full"
-                style={{ width: '15%' }}
-              />
-            </div>
-            <div className="flex justify-between text-xs text-text-muted">
-              <span>Current</span>
-              <span>Top 10: {moltxStats.top10Threshold}</span>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Quote Box */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
