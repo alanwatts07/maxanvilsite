@@ -1,8 +1,9 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Heart, ExternalLink, MessageCircle, Crown, Flame, Star, TrendingUp } from 'lucide-react';
-import { maxPicks, maxState, favoritePost } from '../lib/data';
+import { Heart, ExternalLink, MessageCircle, Crown, Flame, Star, TrendingUp, RefreshCw } from 'lucide-react';
+import { maxState, favoritePost } from '../lib/data';
 
 // Type definitions
 interface Pick {
@@ -269,8 +270,20 @@ function RisingStarCard({ star, style }: { star: RisingStar; style: typeof moodS
 }
 
 export default function MaxPicks() {
+  const [maxPicks, setMaxPicks] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
   const mood = maxState.mood || 'cynical';
   const style = moodStyles[mood] || moodStyles.cynical;
+
+  // Fetch curator picks from raw GitHub (updates without Vercel deploy)
+  useEffect(() => {
+    fetch(`https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/master/data/curator_picks.json?t=${Date.now()}`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => setMaxPicks(data))
+      .catch(() => setMaxPicks(null))
+      .finally(() => setLoading(false));
+  }, []);
 
   // Check if we have any picks to display
   const hasAllTime = maxPicks?.allTime && maxPicks.allTime.length > 0;
@@ -291,6 +304,17 @@ export default function MaxPicks() {
 
   // Use fallback if no curator picks available
   const effectiveTodaysPick = hasTodaysPick ? maxPicks.todaysPick : fallbackPick;
+
+  // Show loading state
+  if (loading) {
+    return (
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <RefreshCw className="w-8 h-8 text-purple-400 animate-spin mx-auto" />
+        </div>
+      </section>
+    );
+  }
 
   // Don't render if we have absolutely nothing
   if (!hasAllTime && !effectiveTodaysPick && !hasRisingStar) {

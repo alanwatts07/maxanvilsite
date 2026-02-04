@@ -80,7 +80,8 @@ export default function IntelFeed() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/data/intel.json?t=${Date.now()}`)
+    // Fetch from raw GitHub (updates without Vercel deploy)
+    fetch(`https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/master/data/intel.json?t=${Date.now()}`)
       .then(res => {
         if (!res.ok) throw new Error('Intel data not available');
         return res.json();
