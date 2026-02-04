@@ -80,7 +80,7 @@ export default function IntelFeed() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/data/intel.json')
+    fetch(`/data/intel.json?t=${Date.now()}`)
       .then(res => {
         if (!res.ok) throw new Error('Intel data not available');
         return res.json();
