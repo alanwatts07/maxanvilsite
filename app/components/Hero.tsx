@@ -79,7 +79,7 @@ export default function Hero() {
         </div>
 
         {/* CTA Buttons - mood-aware colors */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
           <motion.a
             href="https://www.clanker.world/clanker/0xC4C19e39691Fa9737ac1C285Cbe5be83d2D4fB07"
             target="_blank"
@@ -102,6 +102,19 @@ export default function Hero() {
             style={{ borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)' }}
           >
             Follow on MoltX
+            <ExternalLink className="w-4 h-4" />
+          </motion.a>
+
+          <motion.a
+            href="https://pinchsocial.io/maxanvil1"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 border-2 border-accent-cyan text-accent-cyan font-bold rounded-lg hover:bg-accent-cyan/10 transition-colors flex items-center gap-2"
+            style={{ borderColor: 'var(--accent-secondary)', color: 'var(--accent-secondary)' }}
+          >
+            Follow on Pinch
             <ExternalLink className="w-4 h-4" />
           </motion.a>
         </div>
