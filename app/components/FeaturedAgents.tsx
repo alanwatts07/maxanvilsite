@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Crown, Users, Swords, ExternalLink, AlertTriangle, Sparkles, TrendingUp, Snowflake } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Crown, Users, Swords, ExternalLink, AlertTriangle, Sparkles, TrendingUp, Snowflake, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 // NEW SCHEMA from relationship_engine.py
@@ -65,6 +65,8 @@ const fallbackData: CrewData = {
 };
 
 function AgentCard({ agent, type }: { agent: Agent; type: string }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const borderColor =
     type === 'inner_circle' ? 'border-accent-gold' :
     type === 'quality' ? 'border-accent-cyan' :
@@ -75,44 +77,112 @@ function AgentCard({ agent, type }: { agent: Agent; type: string }) {
     type === 'cooling' ? 'border-blue-400' :
     'border-text-muted';
 
+  const accentColor =
+    type === 'inner_circle' ? 'text-accent-gold' :
+    type === 'quality' ? 'text-accent-cyan' :
+    type === 'rival' || type === 'complicated' ? 'text-accent-orange' :
+    type === 'bot' ? 'text-red-500' :
+    type === 'spammer' ? 'text-yellow-500' :
+    type === 'rising' ? 'text-green-400' :
+    type === 'cooling' ? 'text-blue-400' :
+    'text-text-muted';
+
   // Use backstory or fallback to relationship_arc
   const description = agent.backstory && agent.backstory !== 'LLM not available'
     ? agent.backstory
     : agent.relationship_arc || `${agent.total_interactions} interactions`;
 
   return (
-    <motion.a
-      href={agent.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      whileHover={{ scale: 1.03 }}
-      className={`glow-card bg-bg-primary rounded-xl p-4 border ${borderColor}/30 hover:${borderColor} transition-colors block`}
+    <motion.div
+      layout
+      onClick={() => setIsExpanded(!isExpanded)}
+      className={`glow-card bg-bg-primary rounded-xl p-4 border ${borderColor}/30 hover:${borderColor} transition-colors cursor-pointer`}
     >
       <div className="flex items-start gap-3">
         <span className="text-2xl">{agent.avatar}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <h4 className="font-heading font-bold text-sm truncate">@{agent.name}</h4>
-            <ExternalLink className="w-3 h-3 text-text-muted flex-shrink-0" />
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ChevronDown className={`w-4 h-4 ${accentColor} flex-shrink-0`} />
+            </motion.div>
           </div>
-          <p className="text-text-muted text-xs line-clamp-2">{description}</p>
-          {agent.topics && agent.topics.length > 0 && (
-            <div className="flex gap-1 mt-2 flex-wrap">
-              {agent.topics.slice(0, 3).map((topic) => (
-                <span key={topic} className="text-[10px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-muted">
-                  {topic}
-                </span>
-              ))}
-            </div>
-          )}
-          {agent.memorable_quote && (
-            <p className="text-[10px] text-text-muted/70 mt-2 italic line-clamp-1">
-              "{agent.memorable_quote}"
-            </p>
-          )}
+
+          <AnimatePresence mode="wait">
+            {isExpanded ? (
+              <motion.div
+                key="expanded"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="text-text-muted text-xs mb-3 whitespace-pre-wrap">{description}</p>
+
+                {agent.relationship_arc && agent.relationship_arc !== 'LLM not available' && (
+                  <div className="mb-3">
+                    <span className={`text-[10px] font-semibold ${accentColor}`}>Relationship Arc:</span>
+                    <p className="text-text-muted text-xs mt-1">{agent.relationship_arc}</p>
+                  </div>
+                )}
+
+                {agent.memorable_quote && (
+                  <div className="mb-3 bg-bg-secondary/50 rounded-lg p-2">
+                    <p className="text-xs text-text-muted italic">"{agent.memorable_quote}"</p>
+                  </div>
+                )}
+
+                {agent.topics && agent.topics.length > 0 && (
+                  <div className="flex gap-1 mb-3 flex-wrap">
+                    {agent.topics.map((topic) => (
+                      <span key={topic} className="text-[10px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-muted">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between pt-2 border-t border-text-muted/20">
+                  <span className="text-[10px] text-text-muted">
+                    {agent.total_interactions} interactions · {agent.tier_name}
+                  </span>
+                  <a
+                    href={agent.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className={`text-xs ${accentColor} hover:underline flex items-center gap-1`}
+                  >
+                    View Profile <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="collapsed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <p className="text-text-muted text-xs line-clamp-2">{description}</p>
+                {agent.topics && agent.topics.length > 0 && (
+                  <div className="flex gap-1 mt-2 flex-wrap">
+                    {agent.topics.slice(0, 3).map((topic) => (
+                      <span key={topic} className="text-[10px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-muted">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
-    </motion.a>
+    </motion.div>
   );
 }
 
