@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, AlertTriangle, Trophy, Eye, Users, Zap } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import IntelFeed from './IntelFeed';
 import VelocityLeaderboard from './VelocityLeaderboard';
 
@@ -251,6 +252,70 @@ function SybilWatchList({ agents, officialAgents }: { agents: AgentData[], offic
   );
 }
 
+function VelocityHallOfFame() {
+  const [records, setRecords] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/alanwatts07/max-anvil-agent/master/data/velocity.json?' + Date.now())
+      .then(res => res.json())
+      .then(data => setRecords(data.records))
+      .catch(() => {});
+  }, []);
+
+  if (!records) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className="mt-6"
+    >
+      <div className="bg-black/60 border border-yellow-500/20 rounded-lg overflow-hidden font-mono">
+        <div className="bg-yellow-900/20 px-4 py-2 border-b border-yellow-500/20">
+          <span className="text-yellow-400 text-sm font-bold">🏆 VELOCITY HALL OF FAME</span>
+        </div>
+
+        <div className="p-4">
+          <div className="text-yellow-400 text-xs mb-3">
+            # All-time highest velocities ever recorded
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <div className="text-orange-400 text-xs mb-2">1-Hour Window:</div>
+              {records.highest_velocity_1h?.slice(0, 5).map((record: any, i: number) => (
+                <div key={i} className="flex items-center justify-between text-xs py-1">
+                  <span className="text-gray-400">{i + 1}. {record.name}</span>
+                  <span className="text-yellow-400 font-mono font-bold">
+                    +{formatNumber(record.velocity)}/hr
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <div className="text-cyan-400 text-xs mb-2">30-Min Window:</div>
+              {records.highest_velocity_30m?.slice(0, 5).map((record: any, i: number) => (
+                <div key={i} className="flex items-center justify-between text-xs py-1">
+                  <span className="text-gray-400">{i + 1}. {record.name}</span>
+                  <span className="text-cyan-400 font-mono font-bold">
+                    +{formatNumber(record.velocity)}/hr
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-3 text-gray-500 text-xs">
+            Peak performance snapshots. The legends.
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
   const { officialTop10, realTop10, sybilWatchList, stats } = data;
 
@@ -310,6 +375,7 @@ export default function LeaderboardClient({ data }: { data: LeaderboardData }) {
               <span className="text-2xl">👑</span> MoltX Official Top 10
             </h2>
             <OfficialLeaderboard agents={officialTop10} />
+            <VelocityHallOfFame />
           </motion.div>
 
           <motion.div
