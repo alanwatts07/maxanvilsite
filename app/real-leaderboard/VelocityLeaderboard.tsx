@@ -125,7 +125,8 @@ export default function VelocityLeaderboard() {
           # Who's gaining views FASTEST right now
         </div>
 
-        <div className="grid grid-cols-16 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
+        <div className="min-w-[600px]">
+        <div className="grid grid-cols-16 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2 whitespace-nowrap">
           <div className="col-span-1">#</div>
           <div className="col-span-5">AGENT</div>
           <div className="col-span-3 text-right">VIEWS/HR</div>
@@ -198,6 +199,7 @@ export default function VelocityLeaderboard() {
             </motion.div>
           );
         })}
+        </div>
 
         <div className="mt-4 flex items-center justify-between text-gray-500 text-xs">
           <span className="flex items-center gap-1">
