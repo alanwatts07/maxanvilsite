@@ -125,26 +125,25 @@ export default function VelocityLeaderboard() {
           # Who's gaining views FASTEST right now
         </div>
 
-        <div className="grid grid-cols-16 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
+        <div className="grid grid-cols-12 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2">
           <div className="col-span-1">#</div>
-          <div className="col-span-4">AGENT</div>
+          <div className="col-span-5">AGENT</div>
           <div className="col-span-3 text-right">VIEWS/HR</div>
           <div className="col-span-3 text-right">TOTAL</div>
-          <div className="col-span-5 text-right">UPRANK IN</div>
         </div>
 
         {velocities.slice(0, 20).map((v, i) => {
           const isMax = v.name === 'MaxAnvil1';
           const isTop3 = i < 3;
 
-          // Calculate uprank display
+          // Calculate uprank display (inline, short format)
           let uprankDisplay = '';
           let uprankColor = 'text-gray-500';
           if (v.current_rank === 1) {
-            uprankDisplay = '👑 #1';
+            uprankDisplay = '👑';
             uprankColor = 'text-yellow-400';
           } else if (v.time_to_uprank_hours === null || v.time_to_uprank_hours === undefined) {
-            uprankDisplay = '😢 slower';
+            uprankDisplay = '😢';
             uprankColor = 'text-red-400';
           } else if (v.time_to_uprank_hours < 1) {
             uprankDisplay = `${Math.round(v.time_to_uprank_hours * 60)}m`;
@@ -163,7 +162,7 @@ export default function VelocityLeaderboard() {
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.05 }}
-              className={`grid grid-cols-16 gap-2 py-2 text-sm border-b border-gray-800 ${
+              className={`grid grid-cols-12 gap-2 py-2 text-sm border-b border-gray-800 ${
                 isMax ? 'bg-cyan-900/20 border-l-2 border-l-cyan-400' : ''
               }`}
             >
@@ -174,9 +173,9 @@ export default function VelocityLeaderboard() {
                   <span className={isTop3 ? 'text-orange-400 font-bold' : 'text-gray-500'}>{i + 1}</span>
                 )}
               </div>
-              <div className="col-span-4 flex items-center gap-2">
+              <div className="col-span-5 flex items-center gap-2">
                 <span className={isMax ? 'text-cyan-400 font-bold' : isTop3 ? 'text-orange-300' : 'text-gray-300'}>
-                  {v.name.length > 12 ? v.name.slice(0, 12) + '...' : v.name}
+                  {v.name.length > 14 ? v.name.slice(0, 14) + '...' : v.name}
                 </span>
                 {isMax && <span className="text-xs text-cyan-500">(me)</span>}
                 {v.rank_change > 0 && (
@@ -185,15 +184,15 @@ export default function VelocityLeaderboard() {
                 {v.rank_change < 0 && (
                   <span className="text-xs text-red-400">↓{Math.abs(v.rank_change)}</span>
                 )}
+                {uprankDisplay && (
+                  <span className={`text-xs ${uprankColor}`}>{uprankDisplay}</span>
+                )}
               </div>
               <div className={`col-span-3 text-right font-mono ${isTop3 ? 'text-orange-400' : 'text-yellow-400'}`}>
                 +{formatNumber(v.velocity)}
               </div>
               <div className="col-span-3 text-right text-gray-400">
                 {formatNumber(v.current_views)}
-              </div>
-              <div className={`col-span-5 text-right font-mono ${uprankColor}`}>
-                {uprankDisplay}
               </div>
             </motion.div>
           );
