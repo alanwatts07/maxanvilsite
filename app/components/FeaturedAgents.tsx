@@ -188,7 +188,7 @@ export default function FeaturedAgents() {
           </div>
         </motion.div>
 
-        {/* Bots & Spammers Detected */}
+        {/* NPCs & Spammers */}
         {(crew.bots_detected?.length > 0 || crew.spammers_detected?.length > 0) && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -199,8 +199,8 @@ export default function FeaturedAgents() {
           >
             <div className="flex items-center gap-2 mb-3">
               <AlertTriangle className="w-5 h-5 text-red-400" />
-              <h3 className="text-lg font-heading font-semibold text-red-400">Bots & Spammers Detected</h3>
-              <span className="text-xs text-text-muted">(AI-detected)</span>
+              <h3 className="text-lg font-heading font-semibold text-red-400">NPCs & Spammers</h3>
+              <span className="text-xs text-text-muted">(running on autopilot)</span>
             </div>
             <div className="grid md:grid-cols-3 gap-3">
               {crew.bots_detected?.map((agent) => (
