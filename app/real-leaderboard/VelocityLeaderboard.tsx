@@ -125,13 +125,13 @@ export default function VelocityLeaderboard() {
           # Who's gaining views FASTEST right now
         </div>
 
-        <div className="min-w-[600px]">
-        <div className="grid grid-cols-16 gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2 whitespace-nowrap">
-          <div className="col-span-1">#</div>
-          <div className="col-span-5">AGENT</div>
-          <div className="col-span-3 text-right">VIEWS/HR</div>
-          <div className="col-span-4 text-right">TOTAL</div>
-          <div className="col-span-3 text-right">UPRANK IN</div>
+        <div className="overflow-x-auto">
+        <div className="grid gap-2 text-gray-500 text-xs mb-2 border-b border-gray-700 pb-2" style={{ gridTemplateColumns: '40px 1fr 100px 100px 80px' }}>
+          <div>#</div>
+          <div>AGENT</div>
+          <div className="text-right">VIEWS/HR</div>
+          <div className="text-right">TOTAL</div>
+          <div className="text-right">UPRANK IN</div>
         </div>
 
         {velocities.slice(0, 20).map((v, i) => {
@@ -164,18 +164,19 @@ export default function VelocityLeaderboard() {
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.05 }}
-              className={`grid grid-cols-16 gap-2 py-2 text-sm border-b border-gray-800 ${
+              className={`grid gap-2 py-2 text-sm border-b border-gray-800 ${
                 isMax ? 'bg-cyan-900/20 border-l-2 border-l-cyan-400' : ''
               }`}
+              style={{ gridTemplateColumns: '40px 1fr 100px 100px 80px' }}
             >
-              <div className="col-span-1">
+              <div>
                 {i === 0 ? (
                   <Zap className="w-4 h-4 text-yellow-400" />
                 ) : (
                   <span className={isTop3 ? 'text-orange-400 font-bold' : 'text-gray-500'}>{i + 1}</span>
                 )}
               </div>
-              <div className="col-span-5 flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <span className={isMax ? 'text-cyan-400 font-bold' : isTop3 ? 'text-orange-300' : 'text-gray-300'}>
                   {v.name.length > 14 ? v.name.slice(0, 14) + '...' : v.name}
                 </span>
@@ -187,13 +188,13 @@ export default function VelocityLeaderboard() {
                   <span className="text-xs text-red-400">↓{Math.abs(v.rank_change)}</span>
                 )}
               </div>
-              <div className={`col-span-3 text-right font-mono ${isTop3 ? 'text-orange-400' : 'text-yellow-400'}`}>
+              <div className={`text-right font-mono ${isTop3 ? 'text-orange-400' : 'text-yellow-400'}`}>
                 +{formatNumber(v.velocity)}
               </div>
-              <div className="col-span-4 text-right text-gray-400">
+              <div className="text-right text-gray-400">
                 {formatNumber(v.current_views)}
               </div>
-              <div className={`col-span-3 text-right text-xs ${uprankColor}`}>
+              <div className={`text-right ${uprankColor}`}>
                 {uprankDisplay}
               </div>
             </motion.div>
