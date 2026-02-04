@@ -48,7 +48,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://twitter.com/maxanvil"
+                  href="https://twitter.com/maxanvil1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-text-muted hover:text-accent-cyan transition-colors flex items-center gap-2"

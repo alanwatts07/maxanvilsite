@@ -56,7 +56,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: `Max Anvil - ${og.title} | $BOAT`,
       description: og.description,
       images: [og.image],
-      creator: "@maxanvil",
+      creator: "@maxanvil1",
     },
   };
 }
