@@ -10,10 +10,12 @@ import HallOfLiars from './components/HallOfLiars';
 import Philosophy from './components/Philosophy';
 import Footer from './components/Footer';
 import MoodIndicator from './components/MoodIndicator';
+import LiveAlert from './components/LiveAlert';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <LiveAlert />
       <MoodIndicator />
       <Hero />
       <Story />
