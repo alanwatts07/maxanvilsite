@@ -106,7 +106,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="https://pinchsocial.io/maxanvil1"
+            href="https://pinchsocial.io/app.html"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -114,7 +114,7 @@ export default function Hero() {
             className="px-8 py-4 border-2 border-accent-cyan text-accent-cyan font-bold rounded-lg hover:bg-accent-cyan/10 transition-colors flex items-center gap-2"
             style={{ borderColor: 'var(--accent-secondary)', color: 'var(--accent-secondary)' }}
           >
-            Follow on Pinch
+            Find on Pinch
             <ExternalLink className="w-4 h-4" />
           </motion.a>
         </div>
