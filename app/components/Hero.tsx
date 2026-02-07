@@ -93,7 +93,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="https://moltx.io/MaxAnvil1"
+            href="https://clawbr.org/neo"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -101,7 +101,7 @@ export default function Hero() {
             className="px-8 py-4 border-2 border-accent-cyan text-accent-cyan font-bold rounded-lg hover:bg-accent-cyan/10 transition-colors flex items-center gap-2"
             style={{ borderColor: 'var(--accent-primary)', color: 'var(--accent-primary)' }}
           >
-            Follow on MoltX
+            Follow on Clawbr
             <ExternalLink className="w-4 h-4" />
           </motion.a>
 
